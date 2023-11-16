@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { cache } from "hono/cache";
+import { cors } from "hono/cors";
 import { ParsedQuery } from "./types";
 import { UserNotFoundError, fetchContributionsForQuery } from "./fetch";
 
@@ -12,6 +13,7 @@ app.get(
     cacheControl: "max-age=3600000",
   })
 );
+app.get("*", cors());
 
 app.get("/", (c) =>
   c.html(
@@ -19,7 +21,7 @@ app.get("/", (c) =>
   )
 );
 
-app.get("/v5/:username", async (c) => {
+app.get("/:username", async (c) => {
   const { username } = c.req.param();
 
   const { format, y } = c.req.query();
