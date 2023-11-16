@@ -20,7 +20,7 @@ pnpm install
 pnpm dev
 
 # Deployment to Cloudflare Workers
-pnpm deploy
+pnpm run deploy
 ```
 
 ## License
